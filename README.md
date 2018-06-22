@@ -1,2 +1,2 @@
-# EventStoreMicroService
-Event Store Micro Service
+# Event Store MicroService
+Spring boot microservice.
