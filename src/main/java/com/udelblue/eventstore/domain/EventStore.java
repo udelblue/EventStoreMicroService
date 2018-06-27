@@ -1,49 +1,46 @@
 package com.udelblue.eventstore.domain;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.UUID;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+
 @Entity
 public class EventStore {
-	@Id
-	protected UUID id;
-	protected UUID aggregateId;
+	protected String aggregateId;
 	protected String aggregateType;
-	protected String payLoad;
-	protected int version;
-
 	@Basic
 	protected Timestamp createdAt;
+	@Id
+	protected String id;
+	protected String payLoad;
+
+	protected int version;
 
 	public EventStore() {
-		this.id = UUID.randomUUID();
+		UUID uuid = UUID.randomUUID();
+		this.id = uuid.toString();
 		this.version = 1;
 	}
 
 	public EventStore(UUID id, UUID aggregateId, String aggregateType, String payLoad, int version) {
-		this.id = id;
-		this.aggregateId = aggregateId;
+		this.id = id.toString();
+		this.aggregateId = aggregateId.toString();
 		this.aggregateType = aggregateType;
 		this.payLoad = payLoad;
 		this.version = version;
 	}
 
-	public UUID getId() {
-		return id;
-	}
-
 	public UUID getAggregateId() {
-		return aggregateId;
+		return UUID.fromString(aggregateId);
 	}
 
 	public String getAggregateType() {
 		return aggregateType;
-	}
-
-	public String getPayLoad() {
-		return payLoad;
 	}
 
 	public String getCreatedAt() {
@@ -54,16 +51,25 @@ public class EventStore {
 		return createdAt.toString();
 	}
 
-	public int getVersion() {
-		return version;
+	public UUID getId() {
+		return UUID.fromString(id);
+
 	}
 
-	public void setVersion(int version) {
-		this.version = version;
+	public String getPayLoad() {
+		return payLoad;
+	}
+
+	public int getVersion() {
+		return version;
 	}
 
 	@PrePersist
 	public void prePersist() {
 		this.createdAt = Timestamp.from(Instant.now());
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 }

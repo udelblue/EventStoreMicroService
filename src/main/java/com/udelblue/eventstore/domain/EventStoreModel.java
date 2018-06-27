@@ -1,7 +1,5 @@
 package com.udelblue.eventstore.domain;
 
-import java.util.UUID;
-
 public class EventStoreModel {
 
 	protected String aggregateType;
@@ -22,12 +20,12 @@ public class EventStoreModel {
 		return aggregateType;
 	}
 
-	public void setAggregateType(String aggregateType) {
-		this.aggregateType = aggregateType;
-	}
-
 	public String getPayLoad() {
 		return payLoad;
+	}
+
+	public void setAggregateType(String aggregateType) {
+		this.aggregateType = aggregateType;
 	}
 
 	public void setPayLoad(String payLoad) {

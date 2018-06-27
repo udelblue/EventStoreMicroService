@@ -1,8 +1,12 @@
 # Event Store MicroService
-Spring boot microservice.
+Spring Boot Microservice.
 
-update any datebase connection string info in the application.properties file  
+Update any datebase connection string info in the application.properties file  
 
-run 
+Run Jar
 
 		java -jar target/eventstore-0.0.1-SNAPSHOT.jar
+		
+Swagger UI located at  
+
+		http://localhost:8080/swagger-ui.html 
